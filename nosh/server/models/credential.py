@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Binary
 
 from nosh.server.models import Base
 
@@ -19,7 +19,7 @@ class Credential(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     host = Column(String, nullable=False)
     username = Column(String(20), nullable=False)
-    password = Column(String(20), nullable=False)
+    password = Column(Binary, nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     command_id = Column(Integer, ForeignKey('command.id'))
 

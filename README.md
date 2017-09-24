@@ -2,6 +2,10 @@
 
 Password manager and automation tool for SSH, SCP, etc.
 
+### Installation
+
+**WARNING**: Pre-alpha version. Ongoing development. Local server not using SSL. Database not encrypted. Use at your own risk.
+
 ### How it works?
 
 #### Normal approach (ex: SSH)
@@ -11,9 +15,8 @@ Password manager and automation tool for SSH, SCP, etc.
 
 #### Problem
 
-Then command is relatively easy. However, if you have a ton of credentials and a bunch of passwords that are not easy to remember, management becomes a mess.
-Next solution is to use a password manager. 
-However there is a separate User Interface and you need to switch windows to copy and paste the username, host, password, etc. "one by one".
+Then command is relatively easy, however, if you have a ton of credentials and a bunch of passwords that are not easy to remember, management becomes a mess.
+Next solution is to use a password manager. One issue, there is a separate User Interface and you need to switch windows to copy and paste the username, host, password, etc. "one by one".
 
 #### Solution
 
@@ -28,10 +31,6 @@ However there is a separate User Interface and you need to switch windows to cop
 - To use a credential, just click the "Execute" button.
 - The user interface terminates and an expect command is executed.
 - You are now SSH'd to your machine and can execute new commands.
-
-### Installation
-
-**WARNING**: Pre-alpha version. Ongoing development. Local server not using SSL. Database not encrypted. Use at your own risk.
 
 ### Features
 
@@ -48,7 +47,12 @@ However there is a separate User Interface and you need to switch windows to cop
     - [ ] SCP
     - [ ] FTP
     - [ ] rsync
+- [X] Twofish password encryption/decryption
 - [ ] Jump Server (Chained Commands)
+
+### Known Issues
+
+- Flask-SocketIO supports `eventlet` but it does not work properly with `concurrent.futures`.
 
 ### Libraries Used
 
@@ -60,7 +64,9 @@ However there is a separate User Interface and you need to switch windows to cop
 - [gevent](https://github.com/gevent/gevent)
 - [Pexpect](https://github.com/pexpect/pexpect)
 - [pyobjc](https://bitbucket.org/ronaldoussoren/pyobjc)
+- [python-twofish](https://github.com/keybase/python-twofish)
 - [pywebview](https://github.com/r0x0r/pywebview)
+- [socketIO-client](https://github.com/invisibleroads/socketIO-client)
 
 ### Author
 

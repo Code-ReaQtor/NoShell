@@ -9,7 +9,8 @@ from flask_login import login_required
 from nosh.server.models.user import User
 from nosh.server.namespaces.token import TokenNamespace
 from nosh.server.plugins import socketio, login_manager, database
-from nosh.server.views.credentials import Credentials, AddCredential
+from nosh.server.views.credentials import Credentials
+from nosh.server.views.add_credential import AddCredential
 from nosh.server.views.login import Login
 from nosh.server.views.register import Register
 

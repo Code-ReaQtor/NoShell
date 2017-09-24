@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import hashlib
+
 import bcrypt
 import flask_socketio
 from flask import request, render_template, session, url_for
@@ -57,5 +59,8 @@ class Login(MethodView):
         user = database.session.query(User).filter_by(id=user_id).first()
         if not bcrypt.checkpw(password.encode('utf-8'), user.password_hash.encode('utf-8')):
             return redirect(url_for('login'))
+
+        password_hash = hashlib.sha256(password.encode('utf-8')).digest()
+        session['password_hash'] = password_hash  # will be used for encrypting/decrypting credential passwords
         login_user(user)
         return redirect(url_for('credentials'))

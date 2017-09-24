@@ -7,3 +7,4 @@ gevent==1.2.2
 pexpect==4.2.1
 pyobjc==3.2.1
 pywebview==1.7
+twofish==0.3.0

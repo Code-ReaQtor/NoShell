@@ -32,7 +32,7 @@ socketio_client = None
 commands = []
 
 
-class Namespace(BaseNamespace):
+class ClientNamespace(BaseNamespace):
 
     def on_get_token(self, *args):
         token = args[0]['token']
@@ -66,8 +66,8 @@ def setup_database():
 def setup_default_commands(session):
     from nosh.server.models.command import Command
     command = Command()
-    command.name = 'SSH'
-    command.format = 'ssh {}@{}'
+    command.name = 'Secure Shell(SSH)'
+    command.format = 'ssh {username}@{host}'
     session.add(command)
     session.commit()
 
@@ -90,8 +90,7 @@ if __name__ == '__main__':
 
         # run socketIO client
         socketio_client = SocketIO('localhost', PORT)
-        auth_namespace = socketio_client.define(Namespace, '/auth')
-        auth_namespace.emit('check_database')
+        auth_namespace = socketio_client.define(ClientNamespace, '/auth')
         auth_namespace.emit('get_token')
         executor.submit(socketio_client.wait)
 
@@ -100,6 +99,7 @@ if __name__ == '__main__':
 
     # execute process here
     for command in commands:
+        print(command)
         child = pexpect.spawn(command['command'])
         child.expect('Password')  # FIXME: not always the exact word
         child.interact()
