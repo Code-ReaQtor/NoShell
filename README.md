@@ -24,13 +24,13 @@ Next solution is to use a password manager. One issue, there is a separate User 
 
 #### How it really works?
 
-- Fire up the terminal and execute `nosh` command. (By the time of this writing, the command does not exist since it is not yet up for production).
+- Fire up the terminal and execute `nosh` command. (By the time of this writing, the command does not exist since it is not yet up for production, instead, I am using `python -m nosh`).
 - A web-based user interface will pop up. (Using pywebview and Flask)
 - User can register/login.
 - User can add new credentials.
 - To use a credential, just click the "Execute" button.
 - The user interface terminates and an expect command is executed.
-- You are now SSH'd to your machine and can execute new commands.
+- You are now SSH'd to your remote machine and can execute new commands.
 
 ### Features
 
@@ -43,7 +43,8 @@ Next solution is to use a password manager. One issue, there is a separate User 
     - [ ] Private Keys
     - [ ] Browse files
 - [ ] Execute commands
-    - [X] SSH
+    - [ ] SSH
+    - [X] MySQL
     - [ ] SCP
     - [ ] FTP
     - [ ] rsync

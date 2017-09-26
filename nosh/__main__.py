@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import pexpect
+import sys
 import webview
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -69,6 +70,10 @@ def setup_default_commands(session):
     command.name = 'Secure Shell(SSH)'
     command.format = 'ssh {username}@{host}'
     session.add(command)
+    command = Command()
+    command.name = 'MySQL'
+    command.format = 'mysql -u {username} -h {host} -p'
+    session.add(command)
     session.commit()
 
 
@@ -97,10 +102,11 @@ if __name__ == '__main__':
         # create_window() should be on the main thread
         webview.create_window('NoShell', "http://{}:{}/".format(HOST, PORT))
 
+    # FIXME: webview not closing
     # execute process here
     for command in commands:
-        print(command)
-        child = pexpect.spawn(command['command'])
-        child.expect('Password')  # FIXME: not always the exact word
+        child = pexpect.spawnu(command['command'],)
+        child.expect('password:')  # FIXME: not always the exact word
+        child.sendline(command['password'])
         child.interact()
         break  # TODO: jump server

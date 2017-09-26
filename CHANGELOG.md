@@ -1,6 +1,8 @@
 # ChangeLog
 
 ## [Unreleased]
+### Added
+- MySQL support (`mysql -u <username> -h <host> -p`).
 
 ## [v1.0.2] - 2017-09-24
 ### Added
